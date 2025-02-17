@@ -29,4 +29,12 @@ spring:
 logging:
   level:
     org.hibernate.type: trace # binding value
+    com.app: debug # todo 패키지 수정
+
+
+
+kakao:
+  client:
+    id: eb816c833be487a3c946c11f753794fd
+    secret: dbBtKPyYRPkMhZFhBIWVV3tla80t7Fb8
 
