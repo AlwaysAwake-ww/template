@@ -32,6 +32,14 @@ logging:
     com.app: debug # todo 패키지 수정
 
 
+# feign 설정
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
 
 kakao:
   client:
