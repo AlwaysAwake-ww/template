@@ -42,7 +42,12 @@ feign:
         loggerLevel: full
 
 kakao:
-  client:
-    id: eb816c833be487a3c946c11f753794fd
-    secret: dbBtKPyYRPkMhZFhBIWVV3tla80t7Fb8
+  client-id: eb816c833be487a3c946c11f753794fd
+  secret: dbBtKPyYRPkMhZFhBIWVV3tla80t7Fb8
+  redirect-uri: http://localhost:8080/oauth/kakao/callback
+  token-uri: https://kauth.kakao.com/oauth/token
+  userinfo-uri: https://kapi.kakao.com/v2/user/me
 
+jwt:
+  secret-key: 12345678901234567890123456789012
+  expiration-time: 360000
