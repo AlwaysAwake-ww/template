@@ -20,7 +20,6 @@ public class LoginService {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
-    // 로그인 uri 생성
     public String getKakaoLoginUri() {
         return "https://kauth.kakao.com/oauth/authorize?client_id="
                 + kakaoProperties.getClientId()
@@ -29,7 +28,6 @@ public class LoginService {
                 + "&response_type=code";
     }
 
-    // Access token 요청
     public String getAccessToken(String code){
 
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
@@ -39,16 +37,9 @@ public class LoginService {
         params.add("redirect_uri", kakaoProperties.getRedirectUri());
         params.add("code", code);
 
-        // http 요청 header 설정
         HttpHeaders headers = new HttpHeaders();
-
-        // header의 contentType : application/x-www-form-urlencoded -> form 데이터
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        // 카카오 api 요청
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
-
-        // 응답
         ResponseEntity<String> response = restTemplate.postForEntity(kakaoProperties.getTokenUri(), request, String.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
@@ -64,7 +55,6 @@ public class LoginService {
     }
 
 
-    // 사용자 정보 요청
     public Map<String, Object> getUserInfo(String token){
 
         HttpHeaders headers = new HttpHeaders();

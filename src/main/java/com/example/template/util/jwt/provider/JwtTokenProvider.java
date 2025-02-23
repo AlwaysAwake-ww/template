@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.security.Keys;
 
 import java.security.Key;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Map;
 
@@ -41,14 +44,15 @@ public class JwtTokenProvider {
         claims.put("nickname", userInfo.get("nickname"));
         claims.put("profileImage", userInfo.get("profile_image"));
 
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + jwtProperties.getExpirationTime());
+        ZonedDateTime now = ZonedDateTime.now();
+        Instant issuedAt = now.toInstant();
+        Instant expiration = now.plus(Duration.ofMillis(Long.parseLong(jwtProperties.getExpirationTime()))).toInstant();
 
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(validity)
+                .setIssuedAt(Date.from(issuedAt))
+                .setExpiration(Date.from(expiration))
                 .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
     }

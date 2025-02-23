@@ -31,7 +31,6 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         }
     }
 
-    // request에서 token 뽑아내는 메서드
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
