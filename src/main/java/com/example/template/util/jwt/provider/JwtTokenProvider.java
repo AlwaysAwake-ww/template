@@ -25,16 +25,12 @@ public class JwtTokenProvider {
 
     private Key signingKey;
 
-
-
-    // secretKey 초기화
     @PostConstruct
     protected void init(){
 
         this.signingKey = Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
     }
 
-    // jwt 생성
     public String createToken(Map<String, Object> userInfo){
 
         // 클레임 설정
@@ -57,7 +53,6 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // JWT 유효성 및 만료 검증
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(signingKey).build().parseClaimsJws(token);
@@ -67,7 +62,6 @@ public class JwtTokenProvider {
         }
     }
 
-    // JWT에서 사용자 정보 추출
     public Claims getClaimsFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(signingKey)
@@ -76,7 +70,6 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    // JWT에서 사용자 ID 추출
     public String getUserIdFromToken(String token) {
         return getClaimsFromToken(token).getSubject();
     }
