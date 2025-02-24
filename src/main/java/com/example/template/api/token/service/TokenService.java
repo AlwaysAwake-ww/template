@@ -1,12 +1,11 @@
 package com.example.template.api.token.service;
 
 
-import com.example.template.api.login.config.KakaoProperties;
-import com.example.template.util.jwt.config.JwtProperties;
+import com.example.template.global.config.properties.KakaoProperties;
+import com.example.template.global.config.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
 

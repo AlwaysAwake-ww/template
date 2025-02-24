@@ -33,7 +33,6 @@ public class LoginController {
     public ResponseEntity<KakaoLoginResponseDto> kakaoCallback(@RequestParam String code) {
         String accessToken = loginService.getAccessToken(code);
         var userInfo = loginService.getUserInfo(accessToken);
-
         String jwtToken = jwtTokenProvider.createToken(userInfo);
 
         KakaoLoginResponseDto responseDto = KakaoLoginResponseDto.builder()
@@ -45,13 +44,13 @@ public class LoginController {
         return ResponseEntity.ok(responseDto);
     }
 
-
     @GetMapping("/kakao/getAccessToken")
     public ResponseEntity<String> getKakaoAccessToken (@RequestParam String code){
 
         String token = loginService.getAccessToken(code);
         return ResponseEntity.ok(token);
     }
+
     @Operation(summary = "kakao user information", description = "카카오 사용자 정보")
     @GetMapping("/kakao/userinfo")
     public ResponseEntity<?> getUserInfo(@RequestParam String token) {
