@@ -1,4 +1,4 @@
-package com.example.template.api.login.config;
+package com.example.template.global.config.properties;
 
 
 import lombok.Getter;
