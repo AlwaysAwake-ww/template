@@ -1,4 +1,4 @@
-package com.example.template.util.jwt.config;
+package com.example.template.global.config.properties;
 
 import lombok.Getter;
 import lombok.Setter;

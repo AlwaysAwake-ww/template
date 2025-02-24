@@ -1,7 +1,7 @@
 package com.example.template.util.jwt.provider;
 
 
-import com.example.template.util.jwt.config.JwtProperties;
+import com.example.template.global.config.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
