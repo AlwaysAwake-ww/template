@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "KAKAO_TOKEN")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
