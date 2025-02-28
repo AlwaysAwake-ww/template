@@ -1,22 +1,30 @@
 package com.example.template.global.aop;
 
-
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
+import com.example.template.global.aop.service.ApiHistoryService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.Arrays;
+import java.util.Objects;
 
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class ApiHistoryAop {
 
-    @After("within(com.example.template.api..*)")
-    public void saveLog(){
+    private final ApiHistoryService apiHistoryService;
 
-        System.out.println("#### /api/* method called");
+    @AfterReturning(value = "within(com.example.template.api..*)", returning = "result")
+    public void saveLog(JoinPoint joinPoint, Object result) throws JsonProcessingException {
+
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+        apiHistoryService.saveHistory(joinPoint, result, request);
     }
 
 }

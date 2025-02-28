@@ -24,7 +24,13 @@ public class ApiHistory {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "ip")
+    private String ip;
+
+    @Column(name = "result")
+    private String result;
+
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
 }
