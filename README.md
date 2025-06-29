@@ -21,7 +21,7 @@
 
 | 분류 | 기술 |
 |------|------|
-| Language | Java, JavaScript |
+| Language | Java |
 | Framework | Spring Boot |
 | Database | maridDB |
 | Tools | Postman |
