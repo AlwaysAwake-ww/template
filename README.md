@@ -11,7 +11,7 @@
 - ✅ 핵심 기능:
   - kakao login (OAuth)
   - Open Feign
-  - Aop 로깅
+  - Aop
   - Exception Handling
   - Health check
     
